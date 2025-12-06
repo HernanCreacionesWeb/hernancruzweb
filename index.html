@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hernán Cruz | Desarrollador Web Junior</title>
+    <meta name="description" content="Desarrollador web junior especializado en HTML, CSS, WordPress. Portfolio profesional con proyectos reales.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Estilos para WhatsApp -->
+    <style>
+        /* Botón Flotante WhatsApp - VERSIÓN PROFESIONAL MEJORADA */
+        .whatsapp-float {
+            position: fixed;
+            width: 56px;
+            height: 56px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 28px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid white;
+            overflow: hidden;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+        
+        .whatsapp-float:active {
+            transform: scale(0.95);
+        }
+        
+        .whatsapp-float i {
+            margin-left: 1px;
+        }
+        
+        /* Efecto de pulso para el botón */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        .whatsapp-float {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Botón WhatsApp en sección contacto */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #25d366;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .whatsapp-btn i {
+            font-size: 18px;
+        }
+        
+        /* Responsive WhatsApp MEJORADO */
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+                animation: none; /* Quitar animación en móvil para mejor performance */
+            }
+            
+            .whatsapp-btn {
+                padding: 12px 20px;
+                font-size: 15px;
+                width: 100%;
+            }
+            
+            /* Evitar que el botón flotante tape contenido importante */
+            .whatsapp-float {
+                z-index: 9998; /* Un nivel más bajo que el menú */
+            }
+        }
+        
+        /* Para pantallas muy pequeñas */
+        @media (max-width: 480px) {
+            .whatsapp-float {
+                width: 48px;
+                height: 48px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 22px;
+            }
+            
+            /* Asegurar que no tape el botón de volver arriba */
+            .back-to-top {
+                bottom: 80px !important;
+            }
+        }
+        
+        /* Actualizar sección contacto */
+        .contacto-simple {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contacto-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .contacto-directo {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .contacto-directo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        
+        .contacto-directo h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .contacto-directo p {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .numero-telefono {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2563eb;
+            display: block;
+            margin: 10px 0;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        
+        .numero-telefono:hover {
+            color: #1d4ed8;
+        }
+        
+        .horario-atencion {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        /* Estilos específicos para iconos de contacto */
+        .contacto-item .fa-whatsapp {
+            color: #25d366;
+            font-size: 20px;
+            margin-top: 5px;
+        }
+        
+        /* Ajustes para botones en hero */
+        .hero-cta .secondary {
+            background: #25d366;
+            border: 2px solid #25d366;
+        }
+        
+        .hero-cta .secondary:hover {
+            background: #128C7E;
+            border-color: #128C7E;
+        }
+        
+        /* Mejoras para formulario en móvil */
+        .contacto-form input,
+        .contacto-form textarea {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Asegurar que las imágenes en proyectos sean responsivas */
+        .proyecto-screenshot {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Mejora para los proyectos en móvil - imagen arriba, texto abajo */
+        @media (max-width: 768px) {
+            .proyecto-card {
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .proyecto-img {
+                order: 1;
+                height: 250px;
+                margin-bottom: 20px;
+            }
+            
+            .proyecto-info {
+                order: 2;
+            }
+            
+            /* Asegurar que las imágenes se vean completas */
+            .proyecto-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                background-color: #f8fafc;
+            }
+            
+            /* Botones más accesibles en móvil */
+            .proyecto-links {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                opacity: 1;
+                transform: none;
+                margin-top: 15px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#inicio" class="logo">HC</a>
+                
+                <!-- Menú Hamburguesa para móvil -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú de navegación">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <!-- Navegación -->
+                <nav class="nav" id="mainNav">
+                    <a href="#inicio" class="nav-link active">Inicio</a>
+                    <a href="#proyectos" class="nav-link">Proyectos</a>
+                    <a href="#habilidades" class="nav-link">Habilidades</a>
+                    <a href="#sobre-mi" class="nav-link">Sobre mí</a>
+                    <a href="#contacto" class="nav-link btn-contacto">Contacto</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Hernán Cruz</h1>
+                    <p class="hero-tagline">Desarrollador Web <span class="badge">Trainee/Junior</span></p>
+                    <p class="hero-subtitle">Creo sitios web funcionales y atractivos con <strong>HTML, CSS, JavaScript</strong> y <strong>WordPress</strong>. Combino desarrollo técnico con diseño intuitivo.</p>
+                    
+                    <div class="hero-cta">
+                        <a href="#proyectos" class="cta-btn">Ver mis proyectos <i class="fas fa-arrow-down"></i></a>
+                        <a href="https://wa.me/542616655143?text=Hola%20Hernán,%20vi%20tu%20portfolio%20y%20me%20interesa%20contactarte" 
+                           target="_blank" 
+                           class="cta-btn secondary">
+                            <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="assets/foto 2.jpeg" 
+                         alt="Hernán Cruz - Desarrollador Web y Estudiante de Derecho"
+                         class="foto-perfil"
+                         loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROYECTOS ===== -->
+    <section id="proyectos" class="proyectos section-dark">
+        <div class="container">
+            <h2 class="section-title">Proyectos Destacados</h2>
+            <p class="section-subtitle">Casos de estudio reales con enfoque en usabilidad y diseño</p>
+            
+            <div class="proyectos-grid">
+                <!-- PROYECTO 1 -->
+                <article class="proyecto-card">
+                    <div class="proyecto-img">
+                        <img src="assets/grupo.png" 
+                             alt="Sitio web para grupo musical" 
+                             class="proyecto-screenshot"
+                             loading="lazy">
+                        <div class="proyecto-links">
+                            <a href="https://hernancreacionesweb.github.io/Pa-los-mandados" 
+                               target="_blank" 
+                               class="link-btn"
+                               rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Ver sitio
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="proyecto-info">
+                        <h3 class="proyecto-title">Sitio Web Musical</h3>
+                        <p class="proyecto-desc">Landing page para grupo musical con diseño moderno y responsive</p>
+                        
+                        <div class="caso-estudio">
+                            <div class="caso-item">
+                                <h4><i class="fas fa-bullseye"></i> Desafío</h4>
+                                <p>Crear una presencia online atractiva para un grupo musical emergente.</p>
+                            </div>
+                            
+                            <div class="caso-item">
+                                <h4><i class="fas fa-lightbulb"></i> Solución</h4>
+                                <p>Diseño minimalista con énfasis en la identidad visual y enlaces a redes sociales.</p>
+                            </div>
+                            
+                            <div class="caso-item">
+                                <h4><i class="fas fa-tools"></i> Tecnologías</h4>
+                                <div class="tech-tags">
+                                    <span>HTML5</span>
+                                    <span>CSS3</span>
+                                    <span>JavaScript</span>
+                                    <span>Responsive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- PROYECTO 2 -->
+                <article class="proyecto-card">
+                    <div class="proyecto-img">
+                        <img src="assets/webcaptura.png" 
+                             alt="Portfolio web personal" 
+                             class="proyecto-screenshot"
+                             loading="lazy">
+                        <div class="proyecto-links">
+                            <a href="https://hernancreacionesweb.github.io/hc-portfolio-web25/" 
+                               target="_blank" 
+                               class="link-btn"
+                               rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Ver sitio
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="proyecto-info">
+                        <h3 class="proyecto-title">Portfolio Web</h3>
+                        <p class="proyecto-desc">Portfolio personal responsive desarrollado con HTML, CSS y JavaScript puro</p>
+                        
+                        <div class="caso-estudio">
+                            <div class="caso-item">
+                                <h4><i class="fas fa-bullseye"></i> Desafío</h4>
+                                <p>Crear un portfolio moderno, completamente responsive y sin frameworks.</p>
+                            </div>
+                            
+                            <div class="caso-item">
+                                <h4><i class="fas fa-lightbulb"></i> Solución</h4>
+                                <p>Desarrollo con HTML5 semántico, CSS Grid/Flexbox y diseño mobile-first.</p>
+                            </div>
+                            
+                            <div class="caso-item">
+                                <h4><i class="fas fa-tools"></i> Tecnologías</h4>
+                                <div class="tech-tags">
+                                    <span>HTML5</span>
+                                    <span>CSS3</span>
+                                    <span>JavaScript</span>
+                                    <span>Grid</span>
+                                    <span>Flexbox</span>
+                                    <span>Responsive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- PROYECTO 3 -->
+                <article class="proyecto-card">
+                    <div class="proyecto-img">
+                        <img src="assets/audiovisual.png" 
+                             alt="Contenido audiovisual" 
+                             class="proyecto-screenshot"
+                             loading="lazy">
+                        <div class="proyecto-links">
+                            <a href="https://hernancreacionesweb.github.io/HernanCruz/#portafolio" 
+                               target="_blank" 
+                               class="link-btn"
+                               rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Ver sitio
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="proyecto-info">
+                        <h3 class="proyecto-title">Contenido Audiovisual</h3>
+                        <p class="proyecto-desc">Producción y edición de videos institucionales, reels y podcasts</p>
+                        
+                        <div class="caso-estudio">
+                            <div class="caso-item">
+                                <h4><i class="fas fa-bullseye"></i> Desafío</h4>
+                                <p>Crear contenido audiovisual profesional para instituciones y proyectos digitales.</p>
+                            </div>
+                            
+                            <div class="caso-item">
+                                <h4><i class="fas fa-lightbulb"></i> Solución</h4>
+                                <p>Edición profesional con Audacity, FL Studio, Ableton Live y producción multimedia.</p>
+                            </div>
+                            
+                            <div class="caso-item">
+                                <h4><i class="fas fa-tools"></i> Herramientas</h4>
+                                <div class="tech-tags">
+                                    <span>Audacity</span>
+                                    <span>Capcut</span>
+                                    <span>Ableton Live</span>
+                                    <span>Edición Video</span>
+                                    <span>Podcasts</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HABILIDADES ===== -->
+    <section id="habilidades" class="habilidades">
+        <div class="container">
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            <p class="section-subtitle">Conocimientos y tecnologías que domino</p>
+            
+            <div class="habilidades-grid">
+                <!-- Categoría 1 -->
+                <div class="categoria-card">
+                    <div class="categoria-header">
+                        <i class="fas fa-code categoria-icon"></i>
+                        <h3 class="categoria-title">Front-End</h3>
+                    </div>
+                    
+                    <div class="habilidades-list">
+                        <div class="habilidad-item">
+                            <div class="habilidad-info">
+                                <span class="habilidad-nombre">HTML5</span>
+                                <span class="habilidad-nivel">95%</span>
+                            </div>
+                            <div class="habilidad-bar">
+                                <div class="habilidad-progreso" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="habilidad-item">
+                            <div class="habilidad-info">
+                                <span class="habilidad-nombre">CSS3</span>
+                                <span class="habilidad-nivel">90%</span>
+                            </div>
+                            <div class="habilidad-bar">
+                                <div class="habilidad-progreso" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="habilidad-item">
+                            <div class="habilidad-info">
+                                <span class="habilidad-nombre">JavaScript</span>
+                                <span class="habilidad-nivel">70%</span>
+                            </div>
+                            <div class="habilidad-bar">
+                                <div class="habilidad-progreso" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="habilidad-item">
+                            <div class="habilidad-info">
+                                <span class="habilidad-nombre">Responsive Design</span>
+                                <span class="habilidad-nivel">88%</span>
+                            </div>
+                            <div class="habilidad-bar">
+                                <div class="habilidad-progreso" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Categoría 2 -->
+                <div class="categoria-card">
+                    <div class="categoria-header">
+                        <i class="fas fa-paint-brush categoria-icon"></i>
+                        <h3 class="categoria-title">CMS & Herramientas</h3>
+                    </div>
+                    
+                    <div class="habilidades-list">
+                        <div class="habilidad-item">
+                            <div class="habilidad-info">
+                                <span class="habilidad-nombre">WordPress</span>
+                                <span class="habilidad-nivel">85%</span>
+                            </div>
+                            <div class="habilidad-bar">
+                                <div class="habilidad-progreso" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="habilidad-item">
+                            <div class="habilidad-info">
+                                <span class="habilidad-nombre">Git/GitHub</span>
+                                <span class="habilidad-nivel">80%</span>
+                            </div>
+                            <div class="habilidad-bar">
+                                <div class="habilidad-progreso" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="habilidad-item">
+                            <div class="habilidad-info">
+                                <span class="habilidad-nombre">Figma (Conceptos)</span>
+                                <span class="habilidad-nivel">75%</span>
+                            </div>
+                            <div class="habilidad-bar">
+                                <div class="habilidad-progreso" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="habilidad-item">
+                            <div class="habilidad-info">
+                                <span class="habilidad-nombre">SEO Técnico</span>
+                                <span class="habilidad-nivel">70%</span>
+                            </div>
+                            <div class="habilidad-bar">
+                                <div class="habilidad-progreso" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Categoría 3 -->
+                <div class="categoria-card">
+                    <div class="categoria-header">
+                        <i class="fas fa-language categoria-icon"></i>
+                        <h3 class="categoria-title">Idiomas</h3>
+                    </div>
+                    
+                    <div class="habilidades-list">
+                        <div class="habilidad-item">
+                            <div class="habilidad-info">
+                                <span class="habilidad-nombre">Español</span>
+                                <span class="habilidad-nivel">Nativo</span>
+                            </div>
+                            <div class="habilidad-bar">
+                                <div class="habilidad-progreso" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="habilidad-item">
+                            <div class="habilidad-info">
+                                <span class="habilidad-nombre">Inglés</span>
+                                <span class="habilidad-nivel">Intermedio</span>
+                            </div>
+                            <div class="habilidad-bar">
+                                <div class="habilidad-progreso" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="habilidad-item">
+                            <div class="habilidad-info">
+                                <span class="habilidad-nombre">Italiano</span>
+                                <span class="habilidad-nivel">Básico</span>
+                            </div>
+                            <div class="habilidad-bar">
+                                <div class="habilidad-progreso" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOBRE MÍ ===== -->
+    <section id="sobre-mi" class="sobre-mi section-dark">
+        <div class="container">
+            <h2 class="section-title">Sobre Mí</h2>
+            
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <p class="sobre-desc">
+                        Soy un <strong>desarrollador web en formación</strong> con sólida experiencia en creación de contenido digital y edición audiovisual. Actualmente curso la carrera de Derecho, lo que me ha dotado de habilidades analíticas y de redacción que aplico en el desarrollo web.
+                    </p>
+                    
+                    <p class="sobre-desc">
+                        Mi enfoque combina <strong>precisión técnica</strong> con <strong>comunicación efectiva</strong>. Me especializo en crear sitios web que no solo funcionan perfectamente, sino que también transmiten mensajes claros y generan impacto visual.
+                    </p>
+                    
+                    <div class="sobre-details">
+                        <div class="detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <h4>Formación Académica</h4>
+                                <p>Abogacía (en curso) - UNCuyo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Ubicación</h4>
+                                <p>Mendoza, Argentina</p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-bullseye"></i>
+                            <div>
+                                <h4>Objetivo Profesional</h4>
+                                <p>Desarrollador Front-End / WordPress</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/542616655143?text=Hola%20Hernán,%20vi%20tu%20portfolio%20y%20me%20interesa%20contactarte" 
+                       target="_blank" 
+                       class="whatsapp-btn"
+                       rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </a>
+                </div>
+                
+                <div class="sobre-image">
+                    <img src="assets/foto 1.jpeg" 
+                         alt="Hernán Cruz - Desarrollador Web"
+                         class="sobre-foto"
+                         loading="lazy"
+                         style="object-position: center 30%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <h2 class="section-title">¿Trabajamos juntos?</h2>
+            <p class="section-subtitle">Contáctame para proyectos, colaboraciones o consultas</p>
+            
+            <div class="contacto-grid">
+                <!-- Información de contacto -->
+                <div class="contacto-info">
+                    <h3 class="contacto-subtitle">Información de contacto</h3>
+                    
+                    <div class="contacto-details">
+                        <div class="contacto-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <a href="https://wa.me/542616655143" 
+                                   target="_blank" 
+                                   class="numero-telefono"
+                                   rel="noopener noreferrer">+54 261 665-5143</a>
+                                <p class="horario-atencion">Respondo de Lunes a Viernes de 9:00 a 18:00 hs</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contacto-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email principal</h4>
+                                <a href="mailto:cruzgarro@live.com">cruzgarro@live.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contacto-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Ubicación</h4>
+                                <p>Mendoza, Argentina</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- QR Code Section -->
+                
+<div class="qn-section">
+    <h4 class="qn-title">Mi CV en código QR</h4>
+    <div class="qn-container">
+        <div class="qn-placeholder">
+            <img src="assets/qrcv.png" alt="Código QR para descargar CV" class="qr-image">
+        </div>
+    </div>
+    <p class="qn-desc">Escanéame para descargar mi CV completo</p>
+</div>
+                </div>
+                
+                <!-- Sección de contacto directo -->
+                <div class="contacto-simple">
+                    <h3 class="contacto-subtitle">Contacto directo</h3>
+                    <p>Prefiero la comunicación directa y rápida. Puedes contactarme por WhatsApp para una respuesta inmediata.</p>
+                    
+                    <div class="contacto-opciones">
+                        <div class="contacto-directo">
+                            <h4><i class="fab fa-whatsapp"></i> WhatsApp Directo</h4>
+                            <p>Para consultas rápidas, presupuestos o coordinar una reunión virtual</p>
+                            <a href="https://wa.me/542616655143?text=Hola%20Hernán,%20vi%20tu%20portfolio%20y%20me%20interesa%20contactarte%20por%20un%20proyecto" 
+                               target="_blank" 
+                               class="whatsapp-btn"
+                               rel="noopener noreferrer">
+                                <i class="fab fa-whatsapp"></i> Enviar mensaje por WhatsApp
+                            </a>
+                        </div>
+                        
+                        <div class="contacto-directo">
+                            <h4><i class="fas fa-envelope"></i> Email</h4>
+                            <p>Para documentación formal o información detallada</p>
+                            <a href="mailto:cruzgarro@live.com?subject=Consulta%20desde%20portfolio&body=Hola%20Hernán,%0D%0A%0D%0AMe%20interesa%20contactarte%20por...%0D%0A%0D%0ASaludos," 
+                               class="cta-btn secondary" 
+                               style="display: inline-flex; margin-top: 10px; width: 100%; max-width: 300px; justify-content: center;">
+                                <i class="fas fa-envelope"></i> Enviar email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#inicio" class="logo">HC</a>
+                    <p class="footer-desc">Desarrollador Web & Diseñador Digital</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Enlaces rápidos</h4>
+                    <a href="#inicio">Inicio</a>
+                    <a href="#proyectos">Proyectos</a>
+                    <a href="#habilidades">Habilidades</a>
+                    <a href="#contacto">Contacto</a>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Conectemos</h4>
+                    <div class="social-icons">
+                        <a href="https://github.com/HernanCreacionesWeb" target="_blank" aria-label="GitHub" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/hernancruz369" target="_blank" aria-label="LinkedIn" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://wa.me/542616655143" target="_blank" aria-label="WhatsApp" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:cruzgarro@live.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Hernán Cruz. Todos los derechos reservados.</p>
+                <p class="footer-note">Desarrollado con HTML, CSS y JavaScript puro</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Volver Arriba -->
+    <a href="#inicio" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Botón Flotante WhatsApp - VERSIÓN PROFESIONAL -->
+    <a href="https://wa.me/542616655143?text=Hola%20Hernán,%20vi%20tu%20portfolio%20y%20me%20interesa%20contactarte" 
+       target="_blank" 
+       class="whatsapp-float"
+       aria-label="Contactar por WhatsApp"
+       rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript Simplificado -->
+    <script>
+        // Año actual en footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Menú hamburguesa
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                menuToggle.innerHTML = mainNav.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                
+                // Agregar aria-expanded para accesibilidad
+                menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+            });
+        }
+        
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Cerrar menú en móvil
+                        if (window.innerWidth <= 768 && mainNav) {
+                            mainNav.classList.remove('active');
+                            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                }
+            });
+        });
+        
+        // Botón volver arriba
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+        }
+        
+        // Detectar clics fuera del menú para cerrarlo (en móvil)
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = mainNav.contains(event.target);
+            const isClickOnToggle = menuToggle.contains(event.target);
+            
+            if (window.innerWidth <= 768 && mainNav.classList.contains('active') && !isClickInsideNav && !isClickOnToggle) {
+                mainNav.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Ajustar posición del botón volver arriba en móvil para que no choque con WhatsApp
+        function ajustarBotonesMovil() {
+            if (window.innerWidth <= 480) {
+                document.querySelector('.back-to-top').style.bottom = '80px';
+            } else if (window.innerWidth <= 768) {
+                document.querySelector('.back-to-top').style.bottom = '70px';
+            } else {
+                document.querySelector('.back-to-top').style.bottom = '2rem';
+            }
+        }
+        
+        // Ejecutar al cargar y al redimensionar
+        window.addEventListener('load', ajustarBotonesMovil);
+        window.addEventListener('resize', ajustarBotonesMovil);
+        
+        // Mejorar accesibilidad del botón WhatsApp flotante
+        const whatsappFloat = document.querySelector('.whatsapp-float');
+        if (whatsappFloat) {
+            whatsappFloat.addEventListener('focus', function() {
+                this.style.outline = '2px solid #25d366';
+                this.style.outlineOffset = '2px';
+            });
+            
+            whatsappFloat.addEventListener('blur', function() {
+                this.style.outline = 'none';
+            });
+        }
+        
+        // Mensaje de bienvenida en consola
+        console.log("👋 ¡Hola! Este portfolio fue desarrollado por Hernán Cruz.");
+        console.log("📱 Para contacto directo: WhatsApp +54 261 665-5143");
+        console.log("💼 Portfolio profesional - Desarrollador Web Junior");
+        console.log("🚀 ¡Gracias por visitar!");
+    </script>
+</body>
+</html>
