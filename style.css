@@ -641,6 +641,13 @@ h1, h2, h3, h4 {
     box-shadow: var(--shadow);
 }
 
+
+
+
+
+
+
+
 .qr-desc {
     color: var(--gray);
     font-size: 0.9rem;
@@ -986,6 +993,34 @@ h1, h2, h3, h4 {
     }
 }
 
+
+
+
+.qr-wrapper {
+    max-width: 200px; /* Tamaño máximo en pantallas grandes */
+    width: 90%; /* Ocupa 90% del ancho disponible en móviles */
+    margin: 0 auto; /* Centrado */
+}
+
+.qr-image {
+    width: 100%; /* Se adapta al contenedor */
+    height: auto; /* Mantiene proporción */
+    display: block;
+}
+
+/* Para pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+    .qr-wrapper {
+        max-width: 150px;
+        width: 80%;
+    }
+}
+
+
+
+
+
+
 /* Ajustes específicos para pantallas muy pequeñas */
 @media (max-width: 400px) {
     .hero-title {
@@ -1057,3 +1092,4 @@ h1, h2, h3, h4 {
     }
 
 }
+
