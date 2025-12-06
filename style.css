@@ -785,6 +785,16 @@ h1, h2, h3, h4 {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
+
+.qr-image {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+
+
 /* ===== RESPONSIVE DESIGN MEJORADO ===== */
 @media (max-width: 1024px) {
     .hero-title {
@@ -1045,4 +1055,5 @@ h1, h2, h3, h4 {
     .contacto {
         padding: 2rem 0;
     }
+
 }
